@@ -5,17 +5,23 @@
 #include "customer.h"
 #include "inventory.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
-
+vector<Customer> customerList;
 
 void initializeCustomers(string fileName) {
-	//getline
-	//first token is id number
-	//second token is last name
-	//third token is first name
-	//construct customer
-	//add to global list
+  ifstream readFile(fileName);  // for reading data4customers.txt
+  int customerID;
+  string firstName,
+         lastName;
+
+  // while the file has tokens, create customer and add to list
+  while (readFile >> customerID >> lastName >> firstName) {
+    Customer temp = Customer(customerID, lastName, firstName);
+    // add to global list
+    customerList[customerID + 1] = temp;
+  }
 }
 
 void initializeMovies(string fileName) {
@@ -127,7 +133,8 @@ int main() {
 	myInventory.printDrama();
 	cout << endl;
 
-
+  // read data4customers.txt
+  // initializeCustomers("data4customers.txt");
 
 	return 0;
 }

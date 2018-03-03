@@ -6,9 +6,11 @@
 #include "inventory.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 vector<Customer> customerList;
+Inventory inventory;
 
 void initializeCustomers(string fileName) {
   ifstream readFile(fileName);  // for reading data4customers.txt
@@ -20,16 +22,68 @@ void initializeCustomers(string fileName) {
   while (readFile >> customerID >> lastName >> firstName) {
     Customer temp = Customer(customerID, lastName, firstName);
     // add to global list
-    customerList[customerID + 1] = temp;
+    auto iterator = customerList.begin();
+    customerList.insert(iterator, temp);
+    // cout << temp.getCustomerID() << temp.getFirstName() << temp.getLastName() << endl;
   }
+
+  readFile.close();
 }
 
 void initializeMovies(string fileName) {
-	//getline
-	//get type of movie
-	//depending on type create comedy,drama,classic
-	//create object
-	//add to inventory
+  ifstream readFile(fileName);
+  string delimiter = ", ";
+  string line,
+         copy,
+         director,
+         title,
+         releaseDate,
+         majorActor,
+         firstName,
+         lastName;
+  char movieGenre;
+  int stock;
+  size_t pos = 0;
+
+  while (getline(readFile, line)) {
+    copy = line;
+    vector<string> lineData(5);
+
+    for (int i = 0; i < 5; i++) {
+      pos = line.find(delimiter);
+      lineData[i] = line.substr(0, pos);
+      line.erase(0, pos + 2);
+    }
+
+    movieGenre = (lineData[0])[0];  // get char
+    stock = stoi(lineData[1]);  // convert to int
+    director = lineData[2];
+    title = lineData[3];
+    releaseDate = lineData[4];
+
+    if (movieGenre == 'C') {
+      // get the major actor info
+      istringstream scanner(releaseDate);
+      scanner >> firstName >> lastName;
+      majorActor = firstName + " " + lastName;
+      releaseDate = releaseDate.substr(majorActor.length() + 1, releaseDate.length());
+
+      Classic temp(movieGenre, stock, director, title, majorActor, releaseDate);
+      inventory.addClassic(temp.getUniqueMovieID(), temp);
+
+      // scanner.close();
+    } else if (movieGenre == 'F') {
+      Comedy temp(movieGenre, stock, director, title, releaseDate);
+      inventory.addComedy(temp.getUniqueMovieID(), temp);
+    } else if (movieGenre == 'D') {
+      Drama temp(movieGenre, stock, director, title, releaseDate);
+      inventory.addDrama(temp.getUniqueMovieID(), temp);
+    } else {
+      cout << "Invalid Movie Type: " << copy << endl;
+    }
+  }
+
+  readFile.close();
 }
 
 
@@ -40,8 +94,21 @@ void initializeCommands(string fileName) {
 
 
 int main() {
+  // read data4customers.txt
+  initializeCustomers("data4customers.txt");
+  for (int i = 0; i < customerList.size(); i++) {
+    Customer temp = customerList[i];
+    cout << temp.getCustomerID() << " " << temp.getFirstName() << " " << temp.getLastName() << endl;
+  }
+  cout << endl;
+
+  // read movie data
+  initializeMovies("data4movies.txt");
+  inventory.printMovieList();
+  cout << endl;
+
 	//comedy tests
-	Comedy myComedy('f',10,"director", "title", "yearreleased" );
+	Comedy myComedy('f', 10,"director", "title", "yearreleased" );
 	cout << myComedy.getMovieGenre() << endl;
 	cout << myComedy.getStock() << endl;
 	cout << myComedy.getDirector() << endl;
@@ -132,9 +199,6 @@ int main() {
 	myInventory.addDrama(myDrama4.getUniqueMovieID(), myDrama4);
 	myInventory.printDrama();
 	cout << endl;
-
-  // read data4customers.txt
-  // initializeCustomers("data4customers.txt");
 
 	return 0;
 }

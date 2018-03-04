@@ -21,11 +21,16 @@ myHash::myHash(int numBuckets)
 myHash::~myHash()
 {
 	//loop for vector of vectors
-	for (int i = 0; i < myHashTable.size(); i++) {
+  int size,
+      bucketSize;
+  size = myHashTable.size();
+
+	for (int i = 0; i < size; i++) {
+    bucketSize = myHashTable[i].size();
 		//loop to loop through the bucket
-		for (int j = 0; j < myHashTable[i].size(); j++) {
+		for (int j = 0; j < bucketSize; j++) {
 			//deletes the object at each pointer
-			//prevents memory leaks 
+			//prevents memory leaks
 			delete myHashTable[i][j];
 		}
 	}
@@ -46,9 +51,10 @@ Customer * myHash::get(int customerID)
 {
 	//get the index of the bucket from the customer ID
 	int whereToPut = hashFunction(customerID);
+  int bucketSize = myHashTable[whereToPut].size();
 
 	//loop to look inside bucket for same customer id
-	for (int i = 0; i < myHashTable[whereToPut].size(); i++) {
+	for (int i = 0; i < bucketSize; i++) {
 		//if found
 		if (customerID == myHashTable[whereToPut][i]->getCustomerID()) {
 			//return customer pointer
@@ -62,13 +68,19 @@ Customer * myHash::get(int customerID)
 //prints the customer information currently stored in hash table
 void myHash::printList()
 {
+  int size,
+      bucketSize;
+  size = myHashTable.size();
+
 	//loop for vector of vectors
-	for (int i = 0; i < myHashTable.size(); i++) {
+	for (int i = 0; i < size; i++) {
+    bucketSize = myHashTable[i].size();
 		//loop to loop through the bucket
-		for (int j = 0; j < myHashTable[i].size(); j++) {
+		for (int j = 0; j < bucketSize; j++) {
 			//print statement
-			cout << myHashTable[i][j]->getCustomerID() << " " << myHashTable[i][j]->getFirstName() << " " << myHashTable[i][j]->getLastName() << endl;
+			cout << myHashTable[i][j]->getCustomerID() << " "
+           << myHashTable[i][j]->getFirstName() << " "
+           << myHashTable[i][j]->getLastName() << endl;
 		}
 	}
 }
-

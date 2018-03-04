@@ -81,8 +81,10 @@ bool Customer::isInCurrent(string movieID)
 //prints all customer history
 void Customer::printCustomerHistory()
 {
+  cout << "Customer " << _customerID << "'s History:" << endl;
+  int size = _orderHistory.size();
 	//loop to print out the contents of the history vector
-	for (int i = 0; i < _orderHistory.size(); i++) {
+	for (int i = size - 1; i >= 0; i--) {
 		cout << _orderHistory[i] << endl;
 	}
 }

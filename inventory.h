@@ -13,14 +13,43 @@ using namespace std;
 
 class Inventory {
 
+  class lessYear {
+  public:
+    bool operator()(const string& first, const string& second) {
+      istringstream scanFirst(first);
+      istringstream scanSecond(second);
+
+      int firstMonth,
+          firstYear,
+          secondMonth,
+          secondYear;
+      string firstFName,
+             firstLName,
+             secondFName,
+             secondLName;
+      scanFirst >> firstMonth >> firstYear >> firstFName >> firstLName;
+      scanSecond >> secondMonth >> secondYear >> secondFName >> secondLName;
+
+      if (firstYear != secondYear) {
+        return firstYear < secondYear;
+      } else if (firstMonth != secondMonth) {
+        return firstMonth < secondMonth;
+      } else if (firstFName != secondFName) {
+        return firstFName < secondFName;
+      } else {
+        return firstLName < secondLName;
+      }
+    }
+  };
+
 private:
-	//map to hold all comedy movies 
+	//map to hold all comedy movies
 	map<string, Comedy, less<string>> _comedy;
 	//map to hold all drama movies
 	map<string, Drama, less<string>> _drama;
 	//map to hold all classic movies
-	map<string, Classic, less<string>> _classic;
-
+	// map<string, Classic, less<string>> _classic;
+  map<string, Classic, lessYear> _classic;
 
 
 public:

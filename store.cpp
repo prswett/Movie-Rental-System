@@ -7,9 +7,11 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "myHash.h"
 using namespace std;
 
 vector<Customer> customerList;
+myHash otherCustomerList = myHash(20);
 Inventory inventory;
 
 void initializeCustomers(string fileName) {
@@ -24,6 +26,11 @@ void initializeCustomers(string fileName) {
     // add to global list
     auto iterator = customerList.begin();
     customerList.insert(iterator, temp);
+
+	//putting customer pointer into our hash
+	Customer* otherTemp = new Customer(customerID, lastName, firstName);
+	otherCustomerList.put(otherTemp);
+
     // cout << temp.getCustomerID() << temp.getFirstName() << temp.getLastName() << endl;
   }
 
@@ -101,6 +108,13 @@ int main() {
     cout << temp.getCustomerID() << " " << temp.getFirstName() << " " << temp.getLastName() << endl;
   }
   cout << endl;
+
+  cout << "////// TIME FOR OUR HASH///////" << endl;
+  //data4 customers with our hash
+  otherCustomerList.printList();
+  cout << endl;
+
+
 
   // read movie data
   initializeMovies("data4movies.txt");

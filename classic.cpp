@@ -4,10 +4,19 @@
 Classic::Classic(char movieGenre, int stock, string director, string title, string majorActor, string releaseDate)
 {
 	//setting variables
+	/*
 	_movieGenre = movieGenre;
 	_stock = stock;
 	_director = director;
 	_title = title;
+	_majorActor = majorActor;
+	_releaseDate = releaseDate;
+	*/
+
+	setMovieGenre(movieGenre);
+	setStock(stock);
+	setDirector(director);
+	setTitle(title);
 	_majorActor = majorActor;
 	_releaseDate = releaseDate;
 }
@@ -32,14 +41,14 @@ string Classic::getFullClassicInfo()
 	//use string stream to turn char into a string 
 	stringstream ss;
 	string type;
-	ss << _movieGenre;
+	ss << getMovieGenre();
 	ss >> type;
 
 	//turn int into a string
-	string stock = to_string(_stock);
+	string stock = to_string(getStock());
 
 	//full movie string
-	finalResult = type + " " + stock + " " + _director + " " + _title + " " + _majorActor + " " + _releaseDate;
+	finalResult = type + " " + stock + " " + getDirector() + " " + getTitle() + " " + _majorActor + " " + _releaseDate;
 	return finalResult;
 }
 

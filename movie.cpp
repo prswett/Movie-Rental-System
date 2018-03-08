@@ -50,3 +50,27 @@ void Movie::returnMovie()
 {
 	_stock = _stock + 1;
 }
+
+//method to set moviegenre private variable from child classes 
+void Movie::setMovieGenre(char movieGenre)
+{
+	_movieGenre = movieGenre;
+}
+
+//method to set director private variable from child classes 
+void Movie::setDirector(string director)
+{
+	_director = director;
+}
+
+//method to set title private variable from child classes 
+void Movie::setTitle(string title)
+{
+	_title = title;
+}
+
+//method to set stock private variable from child classes 
+void Movie::setStock(int stock)
+{
+	_stock = stock;
+}

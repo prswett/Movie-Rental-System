@@ -72,6 +72,8 @@ void myHash::printList()
       bucketSize;
   size = myHashTable.size();
 
+  cout << "Current customer list:" << endl;
+  
 	//loop for vector of vectors
 	for (int i = 0; i < size; i++) {
     bucketSize = myHashTable[i].size();

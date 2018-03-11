@@ -8,102 +8,110 @@
 #include <fstream>
 #include <sstream>
 #include "myHash.h"
+
 using namespace std;
 
-vector<Customer> customerList;
-//professor pisan said to set defualt value to double the possibilitys
-//10000*2
-myHash otherCustomerList = myHash(20000);
+// professor pisan said to set defualt value to double the possibilities
+// 10000*2
+myHash customerList = myHash(20000);
 Inventory inventory;
 
+// Reads a file containing customer information and adds it to the customerList.
+// Customers are stored as Customer objects before being added to the list.
+// It is assumed that the file has valid and correctly formatted entries.
 void initializeCustomers(string fileName) {
-  ifstream readFile(fileName);  // for reading data4customers.txt
+  ifstream readFile(fileName);  // for reading the file
   int customerID;
   string firstName,
          lastName;
 
   // while the file has tokens, create customer and add to list
   while (readFile >> customerID >> lastName >> firstName) {
-    Customer temp = Customer(customerID, lastName, firstName);
-    // add to global list
-    auto iterator = customerList.begin();
-    customerList.insert(iterator, temp);
-
   	//putting customer pointer into our hash
   	Customer* otherTemp = new Customer(customerID, lastName, firstName);
-  	otherCustomerList.put(otherTemp);
-
-    // cout << temp.getCustomerID() << temp.getFirstName() << temp.getLastName() << endl;
+  	customerList.put(otherTemp);
   }
 
   readFile.close();
 }
 
+// Reads a file containing movie information and adds it to the inventory.
+// Movies are stored in objects before being added to the inventory.
+// It is assumed the file may have invalid entries, but every line
+// must be in the correct format.
 void initializeMovies(string fileName) {
-  ifstream readFile(fileName);
-  string delimiter = ", ";
+  ifstream readFile(fileName);  // for reading the file
+  string delimiter = ", ";  // split each line on this string
   string line,
          copy,
          director,
          title,
          releaseDate,
+         month,
+         year,
          majorActor,
          firstName,
          lastName;
   char movieGenre;
   int stock;
-  size_t pos = 0;
+  size_t pos = 0;  // for checking each line for the delimiter
 
+  // do this for every line in the file
   while (getline(readFile, line)) {
     copy = line;
-    vector<string> lineData(5);
+    vector<string> lineData(5);  // for splitting the string
 
+    // split the string by the delimiter ', '
     for (int i = 0; i < 5; i++) {
       pos = line.find(delimiter);
       lineData[i] = line.substr(0, pos);
       line.erase(0, pos + 2);
     }
 
-    movieGenre = (lineData[0])[0];  // get char
+    movieGenre = (lineData[0])[0];  // get char from string
     stock = stoi(lineData[1]);  // convert to int
     director = lineData[2];
     title = lineData[3];
     releaseDate = lineData[4];
 
-    istringstream scanner(releaseDate);
-    if (movieGenre == 'C') {
+    istringstream scanner(releaseDate);  // to parse the last part of the string
+    if (movieGenre == 'F') {  // comedy
+      scanner >> releaseDate;
+      Comedy temp(movieGenre, stock, director, title, releaseDate);
+      inventory.addComedy(temp.getUniqueMovieID(), temp);
+    } else if (movieGenre == 'D') {  // drama
+      scanner >> releaseDate;
+      Drama temp(movieGenre, stock, director, title, releaseDate);
+      inventory.addDrama(temp.getUniqueMovieID(), temp);
+    } else if (movieGenre == 'C') {  // classic
       // get the major actor info
       scanner >> firstName >> lastName;
       majorActor = firstName + " " + lastName;
-      string month, year;
+
+      // get release date info
       scanner >> month >> year;
       releaseDate = month + " " + year;
 
       Classic temp(movieGenre, stock, director, title, majorActor, releaseDate);
       inventory.addClassic(temp.getUniqueMovieID(), temp);
-    } else if (movieGenre == 'F') {
-      scanner >> releaseDate;
-      Comedy temp(movieGenre, stock, director, title, releaseDate);
-      inventory.addComedy(temp.getUniqueMovieID(), temp);
-    } else if (movieGenre == 'D') {
-      scanner >> releaseDate;
-      Drama temp(movieGenre, stock, director, title, releaseDate);
-      inventory.addDrama(temp.getUniqueMovieID(), temp);
-    } else {
-      cout << "Invalid Movie Type: " << copy << endl;
+    } else {  // movie genre was incorrect
+      cout << "\tInvalid Movie Type: " << copy << endl;
     }
   }
 
   readFile.close();
 }
 
-
+// Reads a file containing commands for the store and executes them.
+// It is assumed that the file may have incorrect input, but
+// all lines must be formatted correctly.
 void initializeCommands(string fileName) {
-  ifstream readFile(fileName);
+  ifstream readFile(fileName);  // for reading the file
   char action,
        mediaType,
        movieGenre;
-  int customerID;
+  int customerID,
+      inInventory;  // for checking if borrow was successful
   string line,
          title,
          director,
@@ -113,40 +121,46 @@ void initializeCommands(string fileName) {
          year,
          movieID;
 
+  // do this for every line in the inputted file
   while (getline(readFile, line)) {
     istringstream scanner(line);
     scanner >> action;
-    if (action == 'I') {
+
+    if (action == 'I') {  // command for inventory
+      cout << endl;
       inventory.printMovieList();
       cout << endl;
-    } else if (action == 'H' || action == 'B' || action == 'R') {
+    } else if (action == 'H' || action == 'B' || action == 'R') {  // all others
       scanner >> customerID;
-      Customer* temp = otherCustomerList.get(customerID);
-      if (temp != nullptr) {
-        if (action == 'H') {
+      Customer* temp = customerList.get(customerID);
+      if (temp != nullptr) {  // customerID returned a customer object
+        if (action == 'H') {  // no customerID means history command
           temp->printCustomerHistory();
           cout << endl;
-        } else {
+        } else {  // Borrow or Return
           scanner >> mediaType >> movieGenre;
-          // cout << "mediaType: " << mediaType << ", movieGenre: " << movieGenre << endl;
+
+          // check movie genre to know how to parse the command
           if (mediaType == 'D' && (movieGenre == 'F' ||
                                    movieGenre == 'D' ||
                                    movieGenre == 'C')) {
             // get the movieID
-            if (movieGenre == 'F') {
+            if (movieGenre == 'F') {  // comedy movie
               scanner >> title;
               string titlePart = title;
+              // everything until ',' is the title
               while (titlePart.at(titlePart.length() - 1) != ',') {
                 scanner >> titlePart;
                 title += " " + titlePart;
               }
-              title = title.substr(0, title.length() - 1);  // remove ','
+              title = title.substr(0, title.length() - 1);  // omit trailing ','
               scanner >> year;
 
               movieID = title + " " + year;
-            } else if (movieGenre == 'D') {
+            } else if (movieGenre == 'D') {  // drama movie
               scanner >> director;
               string namePart = director;
+              // everything until ',' is the director name (can be 3 parts)
               while (namePart.at(namePart.length() - 1) != ',') {
                 scanner >> namePart;
                 director += " " + namePart;
@@ -159,62 +173,76 @@ void initializeCommands(string fileName) {
                 scanner >> titlePart;
                 title += " " + titlePart;
               }
-              title = title.substr(0, title.length() - 1);  // remove ','
+              title = title.substr(0, title.length() - 1);  // omit trailing ','
 
               movieID = director + " " + title;
-            } else {
+            } else {  // classic movie
               scanner >> month >> year >> firstName >> lastName;
               movieID = month + " " + year + " " + firstName + " " + lastName;
             }
-            // cout << "|" << movieID << "|" << endl;
 
             // Borrow movie
             if (action == 'B') {
-              if (movieGenre == 'F') {
-                if (inventory.borrowComedyMovie(movieID)) {
+              if (movieGenre == 'F') {  // comedy
+                // borrow if possible
+                inInventory = inventory.borrowComedyMovie(movieID);
+                if (inInventory == 1) {
                   temp->borrowMovie(movieID);
-                } else {
-                  cout << "Movie is not in inventory." << endl;
                 }
-              } else if (movieGenre == 'D') {
-                if (inventory.borrowDramaMovie(movieID)) {
+              } else if (movieGenre == 'D') {  // drama
+                // borrow if possible
+                inInventory = inventory.borrowDramaMovie(movieID);
+                if (inInventory == 1) {
                   temp->borrowMovie(movieID);
-                } else {
-                  cout << "Movie is not in inventory." << endl;
                 }
-              } else {
-                if (inventory.borrowClassicMovie(movieID)) {
+              } else {  // classic
+                // borrow if possible
+                inInventory = inventory.borrowClassicMovie(movieID);
+                if (inInventory == 1) {
                   temp->borrowMovie(movieID);
-                } else {
-                 cout << "Movie is not in inventory." << endl;
                 }
               }
+
+              // Borrow movie failed
+              if (inInventory == -1) {
+                cout << "Movie is not in inventory: "
+                     << movieGenre << " " << movieID
+                     << endl;
+              } else if (inInventory == 0) {
+                cout << "Movie out of stock: "
+                     << movieGenre << " " << movieID
+                     << endl;
+              }
             } else {  // Return movie
-              if (temp->isInCurrent(movieID)) {
-                if (movieGenre == 'F') {
+              if (temp->isInCurrent(movieID)) {  // check if customer has movie
+                if (movieGenre == 'F') {  // comedy
                   inventory.returnComedyMovie(movieID);
-                } else if (movieGenre == 'D') {
+                } else if (movieGenre == 'D') {  // drama
                   inventory.returnDramaMovie(movieID);
-                } else {
+                } else {  // classic
                   inventory.returnClassicMovie(movieID);
                 }
                 temp->returnMovie(movieID);
-              } else {
-                cout << "Customer does not have movie." << endl;
+              } else {  // movie not in customer checkout
+                cout << "Customer does not have movie: "
+                     << movieGenre << " " << movieID
+                     << endl;
               }
             }
-          } else if (mediaType != 'D') {
+          } else if (mediaType != 'D') {  // if media type is not DVD
             cout << "Invalid Media Type: " << mediaType << endl;
-          } else {
+            cout << "\t In command " << line << endl;
+          } else {  // if movie genre is not F, D, or C
             cout << "Invalid Movie Genre: " << movieGenre << endl;
+            cout << "\t In command " << line << endl;
           }
         }
-      } else {
+      } else {  // no customer found
         cout << "Customer does not exist: " << customerID << endl;
       }
-
-    } else {
+    } else {  // not I, H, B, or R
       cout << "Invalid Action: " << action << endl;
+      cout << "\t In command " << line  << endl;
     }
   }
 }
@@ -223,28 +251,27 @@ void initializeCommands(string fileName) {
 
 int main() {
   // read data4customers.txt
+  cout << "Reading Customers File..." << endl;
   initializeCustomers("data4customers.txt");
-  // for (int i = 0; i < customerList.size(); i++) {
-  //   Customer temp = customerList[i];
-  //   cout << temp.getCustomerID() << " " << temp.getFirstName() << " " << temp.getLastName() << endl;
-  // }
-  // cout << endl;
 
-  cout << "////// TIME FOR OUR HASH///////" << endl;
-  //data4 customers with our hash
-  otherCustomerList.printList();
+  cout << endl;
+  customerList.printList();
   cout << endl;
 
   // read movie data
+  cout << "Reading Movies File..." << endl;
   initializeMovies("data4movies.txt");
+
+  cout << endl;
   inventory.printMovieList();
   cout << endl;
 
   // read command data
-  cout << "Reading Commands File" << endl;
+  cout << "Reading Commands File..." << endl;
   initializeCommands("data4commands.txt");
   cout << endl;
 
+  cout << "Performing extra tests..." << endl;
 	//comedy tests
 	Comedy myComedy('f', 10,"director", "title", "yearreleased" );
 	cout << myComedy.getMovieGenre() << endl;

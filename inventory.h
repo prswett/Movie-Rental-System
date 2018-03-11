@@ -13,7 +13,11 @@ using namespace std;
 
 class Inventory {
 
-  class lessYear {
+  // This class is used to compare movieID's for two Classic movies.
+  // Compares release date year. If the years are the same, it compares months.
+  // If the months are the same, it compares major actors, first by first names,
+  // then by last names.
+  class lessClassic {
   public:
     bool operator()(const string& first, const string& second) {
       istringstream scanFirst(first);
@@ -48,8 +52,7 @@ private:
 	//map to hold all drama movies
 	map<string, Drama, less<string>> _drama;
 	//map to hold all classic movies
-	// map<string, Classic, less<string>> _classic;
-  map<string, Classic, lessYear> _classic;
+  map<string, Classic, lessClassic> _classic;
 
 
 public:
@@ -58,15 +61,15 @@ public:
 	//destructor for inventory
 	virtual ~Inventory();
 	//borrows a comedy movie given an id
-	bool borrowComedyMovie(string movieID);
+	int borrowComedyMovie(string movieID);
 	//returns a comedy movie given an id
 	void returnComedyMovie(string movieID);
 	//borrows a drama movie given an id
-	bool borrowDramaMovie(string movieID);
+	int borrowDramaMovie(string movieID);
 	//returns a drama movie given a movie id
 	void returnDramaMovie(string movieID);
 	//borrows a classic movie given a movie id
-	bool borrowClassicMovie(string movieID);
+	int borrowClassicMovie(string movieID);
 	//returns a classic movie given a movie id
 	void returnClassicMovie(string movieID);
 	//prints all comedy movies

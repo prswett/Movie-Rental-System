@@ -17,6 +17,8 @@ private:
 public:
 	//constructor for classic movie
 	Classic(char movieGenre, int stock, string director, string title, string majorActor, string releaseDate);
+	//destructor for classic
+	virtual ~Classic();
 	//getter for major actor
 	string getMajorActor();
 	//getter for release date

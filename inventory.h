@@ -55,13 +55,20 @@ private:
 public:
 	//constructor
 	Inventory();
+	//destructor for inventory
+	virtual ~Inventory();
+	//borrows a comedy movie given an id
 	bool borrowComedyMovie(string movieID);
+	//returns a comedy movie given an id
 	void returnComedyMovie(string movieID);
+	//borrows a drama movie given an id
 	bool borrowDramaMovie(string movieID);
+	//returns a drama movie given a movie id
 	void returnDramaMovie(string movieID);
+	//borrows a classic movie given a movie id
 	bool borrowClassicMovie(string movieID);
+	//returns a classic movie given a movie id
 	void returnClassicMovie(string movieID);
-
 	//prints all comedy movies
 	void printComedy();
 	//prints all drama movies

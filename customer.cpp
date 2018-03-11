@@ -9,6 +9,11 @@ Customer::Customer(int customerID, string lastName, string firstName)
 	_firstName = firstName;
 }
 
+//destructor for customer
+Customer::~Customer()
+{
+}
+
 //getter for customer ID
 int Customer::getCustomerID()
 {

@@ -4,18 +4,15 @@
 Comedy::Comedy(char movieGenre, int stock, string director, string title, string yearReleased)
 {
 	//sets the variables 
-	/*
-	_movieGenre = movieGenre;
-	_stock = stock;
-	_director = director;
-	_title = title;
-	_yearReleased = yearReleased;
-	*/
 	setMovieGenre(movieGenre);
 	setStock(stock);
 	setDirector(director);
 	setTitle(title);
 	_yearReleased = yearReleased;
+}
+//destructor for comedy
+Comedy::~Comedy()
+{
 }
 
 //getter for year released 

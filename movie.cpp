@@ -1,17 +1,11 @@
 #include "movie.h"
 
-/*
-//constructor for movie
-Movie::Movie(char movieGenre, int stock, string director, string title)
-{
-	_movieGenre = movieGenre;
-	_stock = stock;
-	_director = director;
-	_title = title;
-}
-*/
-
+//no-args constructor
 Movie::Movie()
+{
+}
+//destructor for movie
+Movie::~Movie()
 {
 }
 

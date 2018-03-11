@@ -4,19 +4,15 @@
 Drama::Drama(char movieGenre, int stock, string director, string title, string yearReleased)
 {
 	//sets the variables 
-	/*
-	_movieGenre = movieGenre;
-	_stock = stock;
-	_director = director;
-	_title = title;
-	_yearReleased = yearReleased;
-	*/
-
 	setMovieGenre(movieGenre);
 	setStock(stock);
 	setDirector(director);
 	setTitle(title);
 	_yearReleased = yearReleased;
+}
+//destructor for drama
+Drama::~Drama()
+{
 }
 //getter for year released 
 string Drama::getYearReleased()

@@ -1,6 +1,12 @@
 #include "inventory.h"
 
+//no args constructor
 Inventory::Inventory()
+{
+}
+
+//destructor of inventory
+Inventory::~Inventory()
 {
 }
 

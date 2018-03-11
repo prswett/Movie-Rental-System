@@ -15,6 +15,8 @@ private:
 public:
 	//constructor for drama
 	Drama(char movieGenre, int stock, string director, string title, string yearReleased);
+	//destructor for drama
+	virtual ~Drama();
 	//getter for year released 
 	string getYearReleased();
 	//gets the full movie info formatted the same as the orininal txt file

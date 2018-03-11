@@ -11,7 +11,9 @@
 using namespace std;
 
 vector<Customer> customerList;
-myHash otherCustomerList = myHash(20);
+//professor pisan said to set defualt value to double the possibilitys
+//10000*2
+myHash otherCustomerList = myHash(20000);
 Inventory inventory;
 
 void initializeCustomers(string fileName) {

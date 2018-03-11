@@ -10,29 +10,39 @@ using namespace std;
 class Movie {
 
 private:
+	//movie genre
 	char _movieGenre;
+	//director
 	string _director;
+	//tittle
 	string _title;
+	//stock
 	int _stock;
 
 public:
-	/*
-	char _movieGenre;
-	string _director;
-	string _title;
-	int _stock;
-	*/
+	//no-args constructor
 	Movie();
-	//Movie(char movieGenre, int stock, string director, string title);
+	//destructor for movie
+	virtual ~Movie();
+	//movie genre getter
 	char getMovieGenre();
+	//director getter
 	string getDirector();
+	//tittle getter
 	string getTitle();
+	//stock getter 
 	int getStock();
+	//decrement movie stock
 	void borrowMovie();
+	//increment movie stock
 	void returnMovie();
+	//setter for movie genre
 	void setMovieGenre(char movieGenre);
+	//setter for director
 	void setDirector(string director);
+	//setter for tittle
 	void setTitle(string title);
+	//setter for stock
 	void setStock(int stock);
 
 

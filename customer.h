@@ -28,6 +28,8 @@ private:
 public:
 	//constructor for customer
 	Customer(int customerID, string lastName, string firstName);
+	//destructor for customer
+	virtual ~Customer();
 	//getter for customer id
 	int getCustomerID();
 	//getter for last name of customer

@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
 	Store myStore;
-/*
+
 	// read data4customers.txt
 	cout << "Reading Customers File..." << endl;
 	myStore.initializeCustomers("data4customers.txt");
@@ -26,6 +26,11 @@ int main() {
 	cout << "Reading Commands File..." << endl;
 	myStore.initializeCommands("data4commands.txt");
 	cout << endl;
-*/
-  myStore.runExtraTests();
+
+	//uncommernt for extra unit tests
+	/*
+	myStore.runExtraTests();
+	*/
+
+	return 0;
 }

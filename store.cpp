@@ -1,26 +1,16 @@
-#include "movie.h"
-#include "drama.h"
-#include "comedy.h"
-#include "classic.h"
-#include "customer.h"
-#include "inventory.h"
 #include <iostream>
 #include <fstream>
-#include <sstream>
-#include "myHash.h"
+
 #include "store.h"
 
 using namespace std;
 
-// professor pisan said to set defualt value to double the possibilities
-// 10000*2
-//myHash customerList = myHash(20000);
-//Inventory inventory;
-
+// empty constructor
 Store::Store() {
 
 }
 
+// destructor
 Store::~Store() {
 
 }
@@ -143,7 +133,7 @@ void Store::initializeCommands(string fileName) {
       scanner >> customerID;
       Customer* temp = customerList.get(customerID);
       if (temp != nullptr) {  // customerID returned a customer object
-        if (action == 'H') {  // no customerID means history command
+        if (action == 'H') {  // read customer history
           temp->printCustomerHistory();
           cout << endl;
         } else {  // Borrow or Return
@@ -256,42 +246,9 @@ void Store::initializeCommands(string fileName) {
   }
 }
 
-void Store::printCustomerList()
-{
-	customerList.printList();
-}
-
-void Store::printInventory()
-{
-	inventory.printMovieList();
-}
-
-
-/*
-int main() {
-  // read data4customers.txt
-  cout << "Reading Customers File..." << endl;
-  initializeCustomers("data4customers.txt");
-
-  cout << endl;
-  customerList.printList();
-  cout << endl;
-
-  // read movie data
-  cout << "Reading Movies File..." << endl;
-  initializeMovies("data4movies.txt");
-
-  cout << endl;
-  inventory.printMovieList();
-  cout << endl;
-
-  // read command data
-  cout << "Reading Commands File..." << endl;
-  initializeCommands("data4commands.txt");
-  cout << endl;
-
+void Store::runExtraTests() {
   cout << "Performing extra tests..." << endl;
-	//comedy tests
+	// comedy tests
 	Comedy myComedy('f', 10,"director", "title", "yearreleased" );
 	cout << myComedy.getMovieGenre() << endl;
 	cout << myComedy.getStock() << endl;
@@ -306,7 +263,7 @@ int main() {
 	cout << myComedy.getUniqueMovieID() << endl;
 	cout << endl;
 
-	//drama tests
+	// drama tests
 	Drama myDrama('d', 10, "director", "title", "yearreleased");
 	cout << myDrama.getMovieGenre() << endl;
 	cout << myDrama.getStock() << endl;
@@ -321,7 +278,7 @@ int main() {
 	cout << myDrama.getUniqueMovieID() << endl;
 	cout << endl;
 
-	//classic tests
+	// classic tests
 	Classic myClassic('c', 10, "director", "title", "majorActor", "release");
 	cout << myClassic.getMovieGenre() << endl;
 	cout << myClassic.getStock() << endl;
@@ -337,12 +294,13 @@ int main() {
 	cout << myClassic.getUniqueMovieID() << endl;
 	cout << endl;
 
-	//customer tests
+	// customer tests
 	Customer myCustomer(1573, "west", "kanye");
 	cout << myCustomer.getCustomerID() << endl;
 	cout << myCustomer.getLastName() << endl;
 	cout << myCustomer.getFirstName() << endl;
 	myCustomer.borrowMovie("bambi");
+  myCustomer.borrowMovie("bambi");
 	myCustomer.printCurrentCheckOut();
 	cout << "////////////////////////////////" << endl;
 	myCustomer.printCustomerHistory();
@@ -363,18 +321,21 @@ int main() {
 	myCustomer.printCustomerHistory();
 	cout << endl;
 
-	//comedy inventory tests
+	// comedy inventory tests
 	Inventory myInventory;
 	Comedy myComedy2('f', 10, "jill byer", "avengers", "1987");
 	Comedy myComedy3('f', 10, "matty p", "straight out of hawaii", "2009");
 	Comedy myComedy4('f', 10, "derek star", "bambino", "1950");
+  Comedy myComedy5('f', 59, "jill byer", "avengers", "1987");
 	myInventory.addComedy(myComedy2.getUniqueMovieID(), myComedy2);
 	myInventory.addComedy(myComedy3.getUniqueMovieID(), myComedy3);
 	myInventory.addComedy(myComedy4.getUniqueMovieID(), myComedy4);
 	myInventory.printComedy();
+  myInventory.addComedy(myComedy5.getUniqueMovieID(), myComedy5);
+  myInventory.printComedy();
 	cout << endl;
 
-	//drama inventory tests using the inventory declared above
+	// drama inventory tests using the inventory declared above
 	Drama myDrama2('d', 10, "karmin veranda", "red rose", "1999");
 	Drama myDrama3('d', 10, "drake sternberg", "madea", "2011");
 	Drama myDrama4('d', 10, "harris bjorn", "sistine chapel", "2009");
@@ -384,6 +345,21 @@ int main() {
 	myInventory.printDrama();
 	cout << endl;
 
-	return 0;
+  Classic myClassic2('c', 10, "ben jin", "good movie", "notben jin", "3 2018");
+  Classic myClassic3('c', 59, "ben jin", "good movie", "notben jin", "3 2018");
+  myInventory.addClassic(myClassic2.getUniqueMovieID(), myClassic2);
+  myInventory.printClassic();
+  myInventory.addClassic(myClassic3.getUniqueMovieID(), myClassic3);
+  myInventory.printClassic();
+  cout << endl;
 }
-*/
+
+// outputs the current state of the customerList
+void Store::printCustomerList() {
+	customerList.printList();
+}
+
+// outputs the current state of the inventory
+void Store::printInventory() {
+	inventory.printMovieList();
+}

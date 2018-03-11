@@ -1,25 +1,27 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
-#include "movie.h"
+
+#include <string>
+#include <map>
+
 #include "comedy.h"
 #include "drama.h"
 #include "classic.h"
-#include <string>
-#include <vector>
-#include <map>
-#include <iostream>
 
-using namespace std;
-
+// Inventory holds collections of Comedy, Drama, and Classic movie objects.
+// Users can borrow and return movies, add movies, and print the collections.
 class Inventory {
 
-  // This class is used to compare movieID's for two Classic movies.
+  // LessClassic is used to compare movie ID's for two Classic movies.
   // Compares release date year. If the years are the same, it compares months.
   // If the months are the same, it compares major actors, first by first names,
-  // then by last names.
+  // then by last names. It returns the true if the first ID is less than the
+  // second ID at any point in the above order, or false if the first ID is
+  // greater than the second ID at any point.
   class lessClassic {
+
   public:
-    bool operator()(const string& first, const string& second) {
+    bool operator()(const string& first, const string& second) const {
       istringstream scanFirst(first);
       istringstream scanSecond(second);
 
@@ -31,9 +33,11 @@ class Inventory {
              firstLName,
              secondFName,
              secondLName;
+
       scanFirst >> firstMonth >> firstYear >> firstFName >> firstLName;
       scanSecond >> secondMonth >> secondYear >> secondFName >> secondLName;
 
+      // compare variables, returning if not equal at any point
       if (firstYear != secondYear) {
         return firstYear < secondYear;
       } else if (firstMonth != secondMonth) {
@@ -47,48 +51,44 @@ class Inventory {
   };
 
 private:
-	//map to hold all comedy movies
+	// map to hold all comedy movies
 	map<string, Comedy, less<string>> _comedy;
-	//map to hold all drama movies
+	// map to hold all drama movies
 	map<string, Drama, less<string>> _drama;
-	//map to hold all classic movies
+	// map to hold all classic movies
   map<string, Classic, lessClassic> _classic;
 
-
 public:
-	//constructor
+	// constructor
 	Inventory();
-	//destructor for inventory
+	// destructor for inventory
 	virtual ~Inventory();
-	//borrows a comedy movie given an id
+	// borrows a comedy movie given an id
 	int borrowComedyMovie(string movieID);
-	//returns a comedy movie given an id
+	// returns a comedy movie given an id
 	void returnComedyMovie(string movieID);
-	//borrows a drama movie given an id
+	// borrows a drama movie given an id
 	int borrowDramaMovie(string movieID);
-	//returns a drama movie given a movie id
+	// returns a drama movie given a movie id
 	void returnDramaMovie(string movieID);
-	//borrows a classic movie given a movie id
+	// borrows a classic movie given a movie id
 	int borrowClassicMovie(string movieID);
-	//returns a classic movie given a movie id
+	// returns a classic movie given a movie id
 	void returnClassicMovie(string movieID);
-	//prints all comedy movies
+	// prints all comedy movies
 	void printComedy();
-	//prints all drama movies
+	// prints all drama movies
 	void printDrama();
-	//prints all classic movies
+	// prints all classic movies
 	void printClassic();
-	//prints all movies
+	// prints all movies
 	void printMovieList();
-	//adds a comedy movie to the list
+	// adds a comedy movie to the list
 	void addComedy(string movieID, Comedy other);
-	//adds a drama movie to the list
+	// adds a drama movie to the list
 	void addDrama(string movieID, Drama other);
-	//adds a classic movie to the list
+	// adds a classic movie to the list
 	void addClassic(string movieID, Classic other);
-
-
-
 };
 
 #endif

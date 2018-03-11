@@ -3,51 +3,49 @@
 
 #include <string>
 #include <sstream>
-#include <string>
 
 using namespace std;
 
+// A Movie contains information for the genre, director, and title of a movie.
+// It also keeps track of a stock, to be used in an inventory setting. Users can
+// get and set this information, or borrow and return Movies. It is assumed that
+// only one movie can be borrowed or returned at a time.
 class Movie {
-
 private:
-	//movie genre
+	// movie genre
 	char _movieGenre;
-	//director
+	// director
 	string _director;
-	//tittle
+	// title
 	string _title;
-	//stock
+	// stock
 	int _stock;
 
 public:
-	//no-args constructor
+	// no-args constructor
 	Movie();
-	//destructor for movie
+	// destructor for movie
 	virtual ~Movie();
-	//movie genre getter
+	// movie genre getter
 	char getMovieGenre();
-	//director getter
+	// director getter
 	string getDirector();
-	//tittle getter
+	// title getter
 	string getTitle();
-	//stock getter 
+	// stock getter
 	int getStock();
-	//decrement movie stock
+	// decrement movie stock
 	void borrowMovie();
-	//increment movie stock
+	// increment movie stock
 	void returnMovie();
-	//setter for movie genre
+	// setter for movie genre
 	void setMovieGenre(char movieGenre);
-	//setter for director
+	// setter for director
 	void setDirector(string director);
-	//setter for tittle
+	// setter for tittle
 	void setTitle(string title);
-	//setter for stock
+	// setter for stock
 	void setStock(int stock);
-
-
-
-
 };
 
 #endif

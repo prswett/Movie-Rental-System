@@ -8,18 +8,27 @@
 #include <fstream>
 #include <sstream>
 #include "myHash.h"
+#include "store.h"
 
 using namespace std;
 
 // professor pisan said to set defualt value to double the possibilities
 // 10000*2
-myHash customerList = myHash(20000);
-Inventory inventory;
+//myHash customerList = myHash(20000);
+//Inventory inventory;
+
+Store::Store() {
+
+}
+
+Store::~Store() {
+
+}
 
 // Reads a file containing customer information and adds it to the customerList.
 // Customers are stored as Customer objects before being added to the list.
 // It is assumed that the file has valid and correctly formatted entries.
-void initializeCustomers(string fileName) {
+void Store::initializeCustomers(string fileName) {
   ifstream readFile(fileName);  // for reading the file
   int customerID;
   string firstName,
@@ -39,7 +48,7 @@ void initializeCustomers(string fileName) {
 // Movies are stored in objects before being added to the inventory.
 // It is assumed the file may have invalid entries, but every line
 // must be in the correct format.
-void initializeMovies(string fileName) {
+void Store::initializeMovies(string fileName) {
   ifstream readFile(fileName);  // for reading the file
   string delimiter = ", ";  // split each line on this string
   string line,
@@ -105,7 +114,7 @@ void initializeMovies(string fileName) {
 // Reads a file containing commands for the store and executes them.
 // It is assumed that the file may have incorrect input, but
 // all lines must be formatted correctly.
-void initializeCommands(string fileName) {
+void Store::initializeCommands(string fileName) {
   ifstream readFile(fileName);  // for reading the file
   char action,
        mediaType,
@@ -247,8 +256,18 @@ void initializeCommands(string fileName) {
   }
 }
 
+void Store::printCustomerList()
+{
+	customerList.printList();
+}
+
+void Store::printInventory()
+{
+	inventory.printMovieList();
+}
 
 
+/*
 int main() {
   // read data4customers.txt
   cout << "Reading Customers File..." << endl;
@@ -367,3 +386,4 @@ int main() {
 
 	return 0;
 }
+*/

@@ -19,9 +19,9 @@ class Inventory {
   // second ID at any point in the above order, or false if the first ID is
   // greater than the second ID at any point.
   class lessClassic {
-
   public:
-    bool operator()(const string& first, const string& second) const {
+    bool operator()(const string& first, const string& second) const
+    {
       istringstream scanFirst(first);
       istringstream scanSecond(second);
 

@@ -6,7 +6,7 @@
 
 // myHash is a hash table used to keep track of customer objects.
 // Users can place and retrieve customers, or print the list of customers.
-class myHash{
+class myHash {
 private:
 	// 2d vector to hold buckets containing customer pointers
 	vector<vector<Customer*>> myHashTable;

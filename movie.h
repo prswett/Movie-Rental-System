@@ -7,9 +7,9 @@
 using namespace std;
 
 // A Movie contains information for the genre, director, and title of a movie.
-// It also keeps track of a stock, to be used in an inventory setting. Users can
-// get and set this information, or borrow and return Movies. It is assumed that
-// only one movie can be borrowed or returned at a time.
+// It also keeps track of a stock, to be used in an inventory setting.
+// Users can get and set this information, or borrow and return Movies.
+// It is assumed that only one movie can be borrowed or returned at a time.
 class Movie {
 private:
 	// movie genre

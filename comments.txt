@@ -1,0 +1,3 @@
+Names: Benjamin Jin, Patrick Swett
+Hours: 25
+Comments: Make sure to fully understand spec before writing tests.

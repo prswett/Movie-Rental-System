@@ -6,19 +6,20 @@
 using namespace std;
 
 // empty constructor
-Store::Store() {
-
+Store::Store()
+{
 }
 
 // destructor
-Store::~Store() {
-
+Store::~Store()
+{
 }
 
 // Reads a file containing customer information and adds it to the customerList.
 // Customers are stored as Customer objects before being added to the list.
 // It is assumed that the file has valid and correctly formatted entries.
-void Store::initializeCustomers(string fileName) {
+void Store::initializeCustomers(string fileName)
+{
   ifstream readFile(fileName);  // for reading the file
   int customerID;
   string firstName,
@@ -38,7 +39,8 @@ void Store::initializeCustomers(string fileName) {
 // Movies are stored in objects before being added to the inventory.
 // It is assumed the file may have invalid entries, but every line
 // must be in the correct format.
-void Store::initializeMovies(string fileName) {
+void Store::initializeMovies(string fileName)
+{
   ifstream readFile(fileName);  // for reading the file
   string delimiter = ", ";  // split each line on this string
   string line,
@@ -104,7 +106,8 @@ void Store::initializeMovies(string fileName) {
 // Reads a file containing commands for the store and executes them.
 // It is assumed that the file may have incorrect input, but
 // all lines must be formatted correctly.
-void Store::initializeCommands(string fileName) {
+void Store::initializeCommands(string fileName)
+{
   ifstream readFile(fileName);  // for reading the file
   char action,
        mediaType,
@@ -246,7 +249,9 @@ void Store::initializeCommands(string fileName) {
   }
 }
 
-void Store::runExtraTests() {
+// executes tests for special cases (e.g. duplicate checkouts)
+void Store::runExtraTests()
+{
   cout << "Performing extra tests..." << endl;
 	// comedy tests
 	Comedy myComedy('f', 10,"director", "title", "yearreleased" );
@@ -355,11 +360,13 @@ void Store::runExtraTests() {
 }
 
 // outputs the current state of the customerList
-void Store::printCustomerList() {
+void Store::printCustomerList()
+{
 	customerList.printList();
 }
 
 // outputs the current state of the inventory
-void Store::printInventory() {
+void Store::printInventory()
+{
 	inventory.printMovieList();
 }

@@ -1,10 +1,10 @@
 #include <iostream>
-#include "myHash.h"
+#include "myhash.h"
 
 using namespace std;
 
 // private function to get our hash value
-int myHash::hashFunction(int customerID)
+int MyHash::hashFunction(int customerID)
 {
 	// get hashnumber by % by the number of buckets
 	int hashedResult  = customerID % myHashTable.size();
@@ -12,14 +12,14 @@ int myHash::hashFunction(int customerID)
 	return hashedResult;
 }
 // constructor with hardcoded number of buckets
-myHash::myHash(int numBuckets)
+MyHash::MyHash(int numBuckets)
 {
 	// sets the bucket number
 	myHashTable.resize(numBuckets);
 }
 
 // destructor for myHash
-myHash::~myHash()
+MyHash::~MyHash()
 {
 	// loop for vector of vectors
   int size,
@@ -38,7 +38,7 @@ myHash::~myHash()
 }
 
 // puts the customer pointer into the hash
-void myHash::put(Customer * myCustomer)
+void MyHash::put(Customer * myCustomer)
 {
 	// get the hash number based on customer ID
 	int whereToPut = hashFunction(myCustomer->getCustomerID());
@@ -48,7 +48,7 @@ void myHash::put(Customer * myCustomer)
 
 // gets the customer given the id number from the hash
 // will return nullptr if specified customer is not in the hash
-Customer * myHash::get(int customerID)
+Customer * MyHash::get(int customerID)
 {
 	// get the index of the bucket from the customer ID
 	int whereToPut = hashFunction(customerID);
@@ -68,7 +68,7 @@ Customer * myHash::get(int customerID)
 }
 
 // prints the customer information currently stored in hash table
-void myHash::printList()
+void MyHash::printList()
 {
   int size,
       bucketSize;

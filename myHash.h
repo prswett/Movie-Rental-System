@@ -4,9 +4,9 @@
 #include <vector>
 #include "customer.h"
 
-// myHash is a hash table used to keep track of customer objects.
+// MyHash is a hash table used to keep track of customer objects.
 // Users can place and retrieve customers, or print the list of customers.
-class myHash {
+class MyHash {
 private:
 	// 2d vector to hold buckets containing customer pointers
 	vector<vector<Customer*>> myHashTable;
@@ -15,9 +15,9 @@ private:
 
 public:
 	// constructor with hardcoded number of buckets
-	myHash(int numBuckets);
+	MyHash(int numBuckets);
 	// destructor for myHash
-	virtual ~myHash();
+	virtual ~MyHash();
 	// puts the customer pointer into the hash
 	void put(Customer* myCustomer);
 	// gets the customer given the id number from the hash

@@ -1,4 +1,4 @@
-To compile: g++ -std=c++14 -g -Wall -Wextra classic.cpp comedy.cpp customer.cpp drama.cpp inventory.cpp movie.cpp myHash.cpp store.cpp ass4.cpp -o ass4
+To compile: g++ -std=c++14 -g -Wall -Wextra classic.cpp comedy.cpp customer.cpp drama.cpp inventory.cpp movie.cpp myhash.cpp store.cpp ass4.cpp -o ass4
 To run: ./ass4
 
 Will read data4movies.txt, data4customers.txt, data4commands.txt

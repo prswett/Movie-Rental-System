@@ -1,0 +1,367 @@
+Script started on Sun 11 Mar 2018 05:21:11 PM PDT
+bzjin@uw1-320-07:~/CSS343/ass4$ g++ -std=c++14 -g -Wall -Wextra classic.cpp comedy.cpp customer.cpp drama.cpp inventory.cpp movie.cpp myh ash.cpp store.cpp ass4.cpp -o ass4
+bzjin@uw1-320-07:~/CSS343/ass4$ ./ass4
+Reading Customers File...
+
+Current customer list:
+1000 Minnie Mouse
+1111 Mickey Mouse
+2000 Donald Duck
+3333 Wicked Witch
+4444 Bullwinkle Moose
+5000 Freddie Frog
+6666 Darrell Donkey
+7777 Sammy Spider
+8000 Wally Wacky
+8888 Porky Pig
+9000 Larry Lizard
+9999 Daffy Duck
+
+Reading Movies File...
+	Invalid Movie Type: Z, 10, Hal Ashby, Harold and Maude, Bud Cort 3 1971
+	Invalid Movie Type: Z, 10, Frank Capra, It's a Wonderful Life, James Steward 11 1946
+
+Current inventory:
+F 10 Woody Allen Annie Hall 1977
+F 10 Joel Coen Fargo 1996
+F 10 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 10 Nora Ephron Sleepless in Seattle 1993
+F 10 Rob Reiner When Harry Met Sally 1989
+F 10 Nora Ephron You've Got Mail 1998
+D 10 Barry Levinson Good Morning Vietnam 1988
+D 10 Clint Eastwood Unforgiven 1992
+D 10 Gus Van Sant Good Will Hunting 2000
+D 10 Jonathan Demme Silence of the Lambs 1991
+D 10 Nancy Savoca Dogfight 1991
+D 10 Phillippe De Broca King of Hearts 1967
+D 10 Steven Spielberg Schindler's List 1993
+C 10 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 10 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 10 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 10 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 10 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 10 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Reading Commands File...
+
+Current inventory:
+F 10 Woody Allen Annie Hall 1977
+F 10 Joel Coen Fargo 1996
+F 10 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 10 Nora Ephron Sleepless in Seattle 1993
+F 10 Rob Reiner When Harry Met Sally 1989
+F 10 Nora Ephron You've Got Mail 1998
+D 10 Barry Levinson Good Morning Vietnam 1988
+D 10 Clint Eastwood Unforgiven 1992
+D 10 Gus Van Sant Good Will Hunting 2000
+D 10 Jonathan Demme Silence of the Lambs 1991
+D 10 Nancy Savoca Dogfight 1991
+D 10 Phillippe De Broca King of Hearts 1967
+D 10 Steven Spielberg Schindler's List 1993
+C 10 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 10 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 10 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 10 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 10 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 10 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Customer 1000's History:
+
+Customer 5000's History:
+
+Customer 8000's History:
+
+Invalid Movie Genre: Z
+	 In command B 1111 D Z 2 1971 Malcolm McDowell
+Invalid Action: X
+	 In command X
+Invalid Action: Z
+	 In command Z 1000 D C 10 1941 Humphrey Bogart
+Customer does not exist: 1234
+Movie is not in inventory: F Bogus Title 2001
+Invalid Media Type: Z
+	 In command B 1000 Z F Fargo, 1996
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie is not in inventory: D Steven Spielberg Bogus Title
+
+Current inventory:
+F 9 Woody Allen Annie Hall 1977
+F 9 Joel Coen Fargo 1996
+F 9 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 9 Nora Ephron Sleepless in Seattle 1993
+F 9 Rob Reiner When Harry Met Sally 1989
+F 9 Nora Ephron You've Got Mail 1998
+D 9 Barry Levinson Good Morning Vietnam 1988
+D 9 Clint Eastwood Unforgiven 1992
+D 9 Gus Van Sant Good Will Hunting 2000
+D 9 Jonathan Demme Silence of the Lambs 1991
+D 8 Nancy Savoca Dogfight 1991
+D 9 Phillippe De Broca King of Hearts 1967
+D 9 Steven Spielberg Schindler's List 1993
+C 9 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 9 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 9 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 9 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 9 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 0 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Customer 1000's History:
+borrowed Barry Levinson Good Morning Vietnam
+borrowed 5 1940 Katherine Hepburn
+borrowed Gus Van Sant Good Will Hunting
+borrowed 5 1940 Cary Grant
+borrowed 3 1971 Ruth Gordon
+
+Customer 1111's History:
+borrowed 2 1971 Malcolm McDowell
+borrowed 3 1971 Ruth Gordon
+borrowed 10 1941 Humphrey Bogart
+borrowed 9 1938 Cary Grant
+
+Customer 5000's History:
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+
+Customer 8000's History:
+borrowed You've Got Mail 1998
+returned You've Got Mail 1998
+borrowed 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+borrowed National Lampoon's Animal House 1978
+
+Customer 8888's History:
+borrowed Annie Hall 1977
+borrowed When Harry Met Sally 1989
+borrowed Jonathan Demme Silence of the Lambs
+borrowed Nancy Savoca Dogfight
+borrowed 3 1971 Ruth Gordon
+
+
+bzjin@uw1-320-07:~/CSS343/ass4$ valgrind ./ass4
+==8423== Memcheck, a memory error detector
+==8423== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==8423== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==8423== Command: ./ass4
+==8423== 
+Reading Customers File...
+
+Current customer list:
+1000 Minnie Mouse
+1111 Mickey Mouse
+2000 Donald Duck
+3333 Wicked Witch
+4444 Bullwinkle Moose
+5000 Freddie Frog
+6666 Darrell Donkey
+7777 Sammy Spider
+8000 Wally Wacky
+8888 Porky Pig
+9000 Larry Lizard
+9999 Daffy Duck
+
+Reading Movies File...
+	Invalid Movie Type: Z, 10, Hal Ashby, Harold and Maude, Bud Cort 3 1971
+	Invalid Movie Type: Z, 10, Frank Capra, It's a Wonderful Life, James Steward 11 1946
+
+Current inventory:
+F 10 Woody Allen Annie Hall 1977
+F 10 Joel Coen Fargo 1996
+F 10 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 10 Nora Ephron Sleepless in Seattle 1993
+F 10 Rob Reiner When Harry Met Sally 1989
+F 10 Nora Ephron You've Got Mail 1998
+D 10 Barry Levinson Good Morning Vietnam 1988
+D 10 Clint Eastwood Unforgiven 1992
+D 10 Gus Van Sant Good Will Hunting 2000
+D 10 Jonathan Demme Silence of the Lambs 1991
+D 10 Nancy Savoca Dogfight 1991
+D 10 Phillippe De Broca King of Hearts 1967
+D 10 Steven Spielberg Schindler's List 1993
+C 10 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 10 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 10 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 10 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 10 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 10 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Reading Commands File...
+
+Current inventory:
+F 10 Woody Allen Annie Hall 1977
+F 10 Joel Coen Fargo 1996
+F 10 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 10 Nora Ephron Sleepless in Seattle 1993
+F 10 Rob Reiner When Harry Met Sally 1989
+F 10 Nora Ephron You've Got Mail 1998
+D 10 Barry Levinson Good Morning Vietnam 1988
+D 10 Clint Eastwood Unforgiven 1992
+D 10 Gus Van Sant Good Will Hunting 2000
+D 10 Jonathan Demme Silence of the Lambs 1991
+D 10 Nancy Savoca Dogfight 1991
+D 10 Phillippe De Broca King of Hearts 1967
+D 10 Steven Spielberg Schindler's List 1993
+C 10 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 10 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 10 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 10 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 10 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 10 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Customer 1000's History:
+
+Customer 5000's History:
+
+Customer 8000's History:
+
+Invalid Movie Genre: Z
+	 In command B 1111 D Z 2 1971 Malcolm McDowell
+Invalid Action: X
+	 In command X
+Invalid Action: Z
+	 In command Z 1000 D C 10 1941 Humphrey Bogart
+Customer does not exist: 1234
+Movie is not in inventory: F Bogus Title 2001
+Invalid Media Type: Z
+	 In command B 1000 Z F Fargo, 1996
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie out of stock: C 3 1971 Ruth Gordon
+Movie is not in inventory: D Steven Spielberg Bogus Title
+
+Current inventory:
+F 9 Woody Allen Annie Hall 1977
+F 9 Joel Coen Fargo 1996
+F 9 John Landis National Lampoon's Animal House 1978
+F 10 Gore Verbinski Pirates of the Caribbean 2003
+F 9 Nora Ephron Sleepless in Seattle 1993
+F 9 Rob Reiner When Harry Met Sally 1989
+F 9 Nora Ephron You've Got Mail 1998
+D 9 Barry Levinson Good Morning Vietnam 1988
+D 9 Clint Eastwood Unforgiven 1992
+D 9 Gus Van Sant Good Will Hunting 2000
+D 9 Jonathan Demme Silence of the Lambs 1991
+D 8 Nancy Savoca Dogfight 1991
+D 9 Phillippe De Broca King of Hearts 1967
+D 9 Steven Spielberg Schindler's List 1993
+C 9 George Cukor Holiday Cary Grant 9 1938
+C 10 George Cukor Holiday Katherine Hepburn 9 1938
+C 10 Victor Fleming Gone With the Wind Clark Gable 2 1939
+C 10 Victor Fleming Gone With the Wind Vivien Leigh 2 1939
+C 10 Victor Fleming The Wizard of Oz Judy Garland 7 1939
+C 9 George Cukor The Philadelphia Story Cary Grant 5 1940
+C 9 George Cukor The Philadelphia Story Katherine Hepburn 5 1940
+C 9 John Huston The Maltese Falcon Humphrey Bogart 10 1941
+C 10 Michael Curtiz Casablanca Humphrey Bogart 8 1942
+C 10 Michael Curtiz Casablanca Ingrid Bergman 8 1942
+C 10 Frank Capra It's a Wonderful Life Donna Reed 11 1946
+C 10 Frank Capra It's a Wonderful Life James Steward 11 1946
+C 9 Stanley Kubrick A Clockwork Orange Malcolm McDowell 2 1971
+C 0 Hal Ashby Harold and Maude Ruth Gordon 3 1971
+
+Customer 1000's History:
+borrowed Barry Levinson Good Morning Vietnam
+borrowed 5 1940 Katherine Hepburn
+borrowed Gus Van Sant Good Will Hunting
+borrowed 5 1940 Cary Grant
+borrowed 3 1971 Ruth Gordon
+
+Customer 1111's History:
+borrowed 2 1971 Malcolm McDowell
+borrowed 3 1971 Ruth Gordon
+borrowed 10 1941 Humphrey Bogart
+borrowed 9 1938 Cary Grant
+
+Customer 5000's History:
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+returned 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+
+Customer 8000's History:
+borrowed You've Got Mail 1998
+returned You've Got Mail 1998
+borrowed 3 1971 Ruth Gordon
+borrowed 3 1971 Ruth Gordon
+borrowed National Lampoon's Animal House 1978
+
+Customer 8888's History:
+borrowed Annie Hall 1977
+borrowed When Harry Met Sally 1989
+borrowed Jonathan Demme Silence of the Lambs
+borrowed Nancy Savoca Dogfight
+borrowed 3 1971 Ruth Gordon
+
+
+==8423== 
+==8423== HEAP SUMMARY:
+==8423==     in use at exit: 72,704 bytes in 1 blocks
+==8423==   total heap usage: 1,572 allocs, 1,571 frees, 677,117 bytes allocated
+==8423== 
+==8423== LEAK SUMMARY:
+==8423==    definitely lost: 0 bytes in 0 blocks
+==8423==    indirectly lost: 0 bytes in 0 blocks
+==8423==      possibly lost: 0 bytes in 0 blocks
+==8423==    still reachable: 72,704 bytes in 1 blocks
+==8423==         suppressed: 0 bytes in 0 blocks
+==8423== Rerun with --leak-check=full to see details of leaked memory
+==8423== 
+==8423== For counts of detected and suppressed errors, rerun with: -v
+==8423== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+bzjin@uw1-320-07:~/CSS343/ass4$ exit
+
+Script done on Sun 11 Mar 2018 05:22:20 PM PDT
